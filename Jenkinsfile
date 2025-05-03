@@ -9,12 +9,15 @@ echo "running in /home/ubuntu/script/backup/"
 mkdir -p "$WORKSPACE/script/backup"
 cd "$WORKSPACE/script/backup"
 
-name="repo_list.txt"
+name="$WORKSPACE/repo_list.txt"
 
-                    if [[ -z "$name" ]]; then
-                        echo "No filename provided, exiting."
-                        exit 1
-                    fi
+cp "$WORKSPACE/$REPO_FILE" ./repo_list.txt
+                    name="repo_list.txt"
+
+                   if [ ! -f "$name" ]; then
+                         echo "File $name not found!"
+                          exit 1
+                  fi
 
 while read -r line
 do
