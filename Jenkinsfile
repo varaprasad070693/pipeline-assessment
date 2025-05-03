@@ -6,7 +6,7 @@ pipeline {
                                 sh '''
 #!/bin/bash
 echo "running in /home/ubuntu/script/backup/"
-cd /home/ubuntu/script/backup/
+cd "/home/ubuntu/script/backup/"
 
 name="${/home/ubuntu/script/repo_list}"
 
