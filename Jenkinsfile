@@ -1,8 +1,5 @@
 pipeline {
         agent any
-         parameters {
-        file(name: 'REPO_FILE', description: 'Upload the repo_list.txt file')
-         }
         stages {
                 stage ('Build') {
                         steps {
