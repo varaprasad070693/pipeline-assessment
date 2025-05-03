@@ -6,34 +6,31 @@ pipeline {
                                 sh '''
 #!/bin/bash
 
-repo_list_file="repo_list"
-backup_dir="$WORKSPACE/Backup and Audit"
-today=$(date +%Y%m%d)
+REPO_LIST="repo_list"
+BACKUP_DIR="$WORKSPACE/Backup and Audit"
+TODAY=$(date +%Y%m%d)
 
-mkdir -p "$backup_dir"
+mkdir -p "$BACKUP_DIR"
 
 while read -r repo_url; do
     repo_name=$(basename "$repo_url" .git)
-    repo_path="$backup_dir/$repo_name"
+    repo_path="$BACKUP_DIR/$repo_name"
 
     if [ ! -d "$repo_path/.git" ]; then
-        echo "Cloning $repo_name..."
+        echo "Cloning started $repo_name..."
         git clone "$repo_url" "$repo_path"
     else
-        echo "Updating $repo_name..."
+        echo "pulling $repo_name..."
         cd "$repo_path" || continue
-        git config --global --add safe.directory "$repo_path"
-        git reset --hard HEAD
-        git clean -fd
         git pull
     fi
 
-    echo "Creating a tar backup for $repo_name"
-    tar -czvf "$backup_dir/${repo_name}-${today}.tar.gz" -C "$backup_dir" "$repo_name"
+    echo "Genearating a tar backup for $repo_name"
+    tar -czvf "$BACKUP_DIR/${repo_name}-${today}.tar.gz" -C "$BACKUP_DIR" "$repo_name"
 
     echo "Searching for recent commits for $repo_name"
     cd "$repo_path" || continue
-    git log --since=1.day > "$backup_dir/audit-${repo_name}-${today}.txt"
+    git log --since=1.day > "$BACKUP_DIR/audit-${repo_name}-${today}.txt"
 
 done < "$repo_list_file"
 '''
