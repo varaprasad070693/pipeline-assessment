@@ -4,9 +4,16 @@ pipeline {
                 stage ('Build') {
                         steps {
                                 sh '''
-
+#!/bin/bash
 echo "running in /home/ubuntu/script/backup/"
 cd /home/ubuntu/script/backup/
+
+name="${/home/ubuntu/script/repo_list}"
+
+                    if [[ -z "$name" ]]; then
+                        echo "No filename provided, exiting."
+                        exit 1
+                    fi
 
 read -p "Pleae enter the filename to start cloning:" name
 while read line
