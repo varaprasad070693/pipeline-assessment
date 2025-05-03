@@ -1,3 +1,9 @@
+pipeline {
+        agent any
+        stages {
+                stage ('Build') {
+                        steps {
+                                sh '''
 #!/bin/bash/
 
 echo "running in /home/ubuntu/script/backup/"
@@ -33,3 +39,8 @@ do
         fi
         echo -e "\n"
 done < $name
+'''
+                        }
+                }
+        }
+}
