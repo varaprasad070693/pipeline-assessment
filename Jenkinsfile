@@ -6,7 +6,7 @@ pipeline {
                                 sh '''
 
 echo "running in /home/ubuntu/script/backup/"
-sudo -S cd /home/ubuntu/script/backup/
+cd /home/ubuntu/script/backup/
 
 read -p "Pleae enter the filename to start cloning:" name
 while read line
@@ -17,17 +17,17 @@ do
                 dir=`echo "$line" | awk -F "." '{print $(NF-1)}'| awk -F "/" '{print $NF}'`
                 tar -czf "$dir-$(date +%Y%m%d).tar.gz" $dir
                 echo "backup created"
-                sudo -S cd $dir;git log --since=1.day > audit-$(date +%Y%m%d).txt
+                cd $dir;git log --since=1.day > audit-$(date +%Y%m%d).txt
         else
                 sleep 1
                 echo "pull reqested"
                 #set -x
                 dir=`echo "$line" | awk -F "." '{print $(NF-1)}'| awk -F "/" '{print $NF}'`
                 if [ -e $dir ];then
-                        sudo -S cd $dir
+                        cd $dir
                         git pull $line
                         git log --since=1.day > audit-$(date +%Y%m%d).txt
-                        sudo -S cd ..
+                        cd ..
                         #set +x
                         #pwd
                 else
