@@ -6,7 +6,7 @@ pipeline {
                                 sh '''
 #!/bin/bash
 echo "running in /home/ubuntu/script/backup/"
-mkdir -p "$WORKSPACE/script/backup-$(date +%Y%m%d)"
+mkdir -p "$WORKSPACE/script/backup"
 cd "$WORKSPACE/script/backup"
 
 name="${/home/ubuntu/script/repo_list}"
