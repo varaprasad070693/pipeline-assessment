@@ -32,7 +32,7 @@ while read -r repo_url; do
     cd "$repo_path" || continue
     git log --since=1.day > "$BACKUP_DIR/audit-${repo_name}-${today}.txt"
 
-done < "$repo_list_file"
+done < "$REPO_LIST"
 '''
                         }
                 }
