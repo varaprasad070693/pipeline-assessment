@@ -9,7 +9,7 @@ echo "running in /home/ubuntu/script/backup/"
 mkdir -p "$WORKSPACE/script/backup"
 cd "$WORKSPACE/script/backup"
 
-name="${/home/ubuntu/script/repo_list}"
+name="repo_list.txt"
 
                     if [[ -z "$name" ]]; then
                         echo "No filename provided, exiting."
