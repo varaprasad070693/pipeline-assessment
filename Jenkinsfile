@@ -7,7 +7,7 @@ pipeline {
 #!/bin/bash
 
 repo_list_file="repo_list"
-backup_dir="$WORKSPACE/backups"
+backup_dir="$WORKSPACE/Backup and Audit"
 today=$(date +%Y%m%d)
 
 mkdir -p "$backup_dir"
