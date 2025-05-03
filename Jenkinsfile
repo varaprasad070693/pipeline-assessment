@@ -15,8 +15,7 @@ name="${/home/ubuntu/script/repo_list}"
                         exit 1
                     fi
 
-read -p "Pleae enter the filename to start cloning:" name
-while read line
+while read -r line
 do
         git clone $line
         if [ $? -eq 0 ];then
