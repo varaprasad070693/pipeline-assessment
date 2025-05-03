@@ -4,7 +4,6 @@ pipeline {
                 stage ('Build') {
                         steps {
                                 sh '''
-#!/bin/bash/
 
 echo "running in /home/ubuntu/script/backup/"
 cd /home/ubuntu/script/backup/
