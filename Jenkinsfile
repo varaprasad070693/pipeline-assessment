@@ -26,11 +26,11 @@ while read -r repo_url; do
     fi
 
     echo "Genearating a tar backup for $repo_name"
-    tar -czvf "$BACKUP_DIR/${repo_name}-${today}.tar.gz" -C "$BACKUP_DIR" "$repo_name"
+    tar -czvf "$BACKUP_DIR/${repo_name}-${TODAY}.tar.gz" -C "$BACKUP_DIR" "$repo_name"
 
     echo "Searching for recent commits for $repo_name"
     cd "$repo_path" || continue
-    git log --since=1.day > "$BACKUP_DIR/audit-${repo_name}-${today}.txt"
+    git log --since=1.day > "$BACKUP_DIR/audit-${repo_name}-${TODAY}.txt"
 
 done < "$REPO_LIST"
 '''
