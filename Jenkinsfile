@@ -6,7 +6,7 @@ pipeline {
                                 sh '''
 #!/bin/bash
 
-repo_list_file="repo_list.txt"
+repo_list_file="repo_list"
 backup_dir="$WORKSPACE/backups"
 today=$(date +%Y%m%d)
 
